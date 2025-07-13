@@ -1,30 +1,20 @@
-"use client";
+// app/page.tsx
 
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+'use client'
+import dynamic from 'next/dynamic';
 
 import MainImg from "@/sections/MainImg";
 import AboutSection from "@/sections/AboutSection";
 import MissionsSection from "@/sections/MissionsSection";
 import EquipeSection from "@/sections/EquipeSection";
 
+// Import dynamique sans SSR (pas de rendu côté serveur)
+const ScrollHandler = dynamic(() => import("@/components/ScrollHandler"), { ssr: false });
+
 export default function Home() {
-  const searchParams = useSearchParams();
-  const scrollTo = searchParams.get("scrollTo");
-
-  useEffect(() => {
-    if (scrollTo) {
-      const el = document.getElementById(scrollTo);
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
-        }, 200);
-      }
-    }
-  }, [scrollTo]);
-
   return (
     <>
+      <ScrollHandler />
       <MainImg />
       <AboutSection />
       <MissionsSection />
