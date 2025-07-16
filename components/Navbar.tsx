@@ -1,19 +1,43 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // Effet de scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // appel initial
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Verrouille le scroll du body si menu mobile ouvert
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  // Scroll doux vers le haut
   const handleScrollToTop = (e: React.MouseEvent) => {
     if (isHome) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    setIsOpen(false);
   };
 
+  // Scroll doux vers section "missions"
   const handleScrollToMissions = (e: React.MouseEvent) => {
     if (isHome) {
       e.preventDefault();
@@ -22,26 +46,77 @@ export default function Navbar() {
         el.scrollIntoView({ behavior: "smooth" });
       }
     }
+    setIsOpen(false);
   };
 
+  const navBgClass = isHome && !scrolled ? "bg-transparent" : "bg-black/90 shadow-md";
+
   return (
-    <header className="w-full bg-black shadow-lg p-4 sticky top-0 z-50">
-      <nav className="container mx-auto flex justify-between items-center text-white">
-        <div className="text-2xl font-title">EMS Audit</div>
-        <ul className="flex space-x-4 font-subtitle">
+    <header className={`fixed top-0 w-full z-50 transition-colors duration-500 ${navBgClass}`}>
+      <nav className="container mx-auto px-4 py-4 flex justify-between items-center text-white">
+        <Link
+          href="/"
+          onClick={handleScrollToTop}
+          className="flex flex-col leading-tight text-white no-underline group"
+        >
+          <span>
+            <h1 className="text-2xl font-bold group-hover:underline">EMS Audit</h1>
+            <h2 className="text-sm font-light tracking-wide">expertise & conseil</h2>
+          </span>
+        </Link>
+
+        {/* Menu desktop */}
+        <ul className="hidden lg:flex space-x-8 font-medium">
           <li>
-            <Link href="/" onClick={handleScrollToTop}>
-              Accueil
-            </Link>
+            <Link href="/" onClick={handleScrollToTop}>Accueil</Link>
           </li>
           <li>
-            <Link href="/?scrollTo=missions" onClick={handleScrollToMissions}>
-              Missions
-            </Link>
+            <Link href="/?scrollTo=missions" onClick={handleScrollToMissions}>Missions</Link>
           </li>
-          <li><Link href="/equipe">Équipe</Link></li>
-          <li><Link href="/missions/bilan-carbone">Bilan Carbone ®</Link></li>
+          <li>
+            <Link href="/equipe" onClick={() => setIsOpen(false)}>Équipe</Link>
+          </li>
+          <li>
+            <Link href="/missions/bilan-carbone" onClick={() => setIsOpen(false)}>Bilan Carbone ®</Link>
+          </li>
         </ul>
+
+        {/* Bouton burger */}
+        <button
+          className="lg:hidden flex flex-col justify-between w-8 h-6 relative z-50 focus:outline-none cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="sr-only">{isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}</span>
+          <span className={`block h-0.5 w-full bg-white rounded transition-all duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
+          <span className={`block h-0.5 w-full bg-white rounded transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0 translate-x-3' : ''}`} />
+          <span className={`block h-0.5 w-full bg-white rounded transition-all duration-300 ease-in-out ${isOpen ? '-rotate-45 -translate-y-3' : ''}`} />
+        </button>
+
+        {/* Overlay */}
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+
+        {/* Menu mobile */}
+        <div className={`fixed top-0 right-0 h-full w-3/4 max-w-xs bg-black text-white z-50 p-6 transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
+          <ul className="flex flex-col space-y-6 text-lg font-medium">
+            <li>
+              <Link href="/" onClick={handleScrollToTop}>Accueil</Link>
+            </li>
+            <li>
+              <Link href="/?scrollTo=missions" onClick={handleScrollToMissions}>Missions</Link>
+            </li>
+            <li>
+              <Link href="/equipe" onClick={() => setIsOpen(false)}>Équipe</Link>
+            </li>
+            <li>
+              <Link href="/missions/bilan-carbone" onClick={() => setIsOpen(false)}>Bilan Carbone ®</Link>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
   );

@@ -4,7 +4,7 @@ export default function MissionsSection() {
   return (
     <section 
         id="missions"
-        className="py-16 px-6 md:px-12 lg:px-24 bg-gray-50"
+        className="py-16 px-6 md:px-12 lg:px-24 bg-gray-50 scroll-mt-18"
     >
         <h2>Nos missions</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

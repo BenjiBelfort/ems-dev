@@ -1,21 +1,22 @@
+import CollabGrid from "@/components/ui/CollabGrid";
+
 export default function EquipePage() {
   return (
-    <main className="p-8">
-      <h1>ICI c&apos;est EMS</h1>
-      <p className="mb-6">
+    <main className="md:w-5xl p-8 pt-28">
+      <h1 className="text-3xl font-bold mb-4">ICI c&apos;est EMS</h1>
+      <p className="mb-6 text-lg text-gray-700">
         Nous nous engageons à générer un impact positif sur la société à travers...
       </p>
 
-      <section className="grid md:grid-cols-2 gap-6">
-        {/* Blocs personnalisés */}
-        <div className="bg-gray-100 p-4 rounded shadow">
-          <h2 className="mb-2">Nos actions</h2>
-          <p>Nous intervenons dans les domaines suivants...</p>
-        </div>
-        <div className="bg-gray-100 p-4 rounded shadow">
-          <h2 className="mb-2">Partenaires</h2>
-          <p>Nous collaborons avec des ONG, collectivités, etc.</p>
-        </div>
+      {/* Texte avant la galerie */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-2">Notre équipe pour vous servir :</h2>
+        <p className="text-gray-600 mb-6">
+          Voici les membres d’EMS Audit : une équipe engagée, compétente et complémentaire.
+        </p>
+
+        {/* La galerie 3 colonnes */}
+        <CollabGrid />
       </section>
     </main>
   );

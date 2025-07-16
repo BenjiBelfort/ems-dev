@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="fr" className={`${quicksand.variable} ${montserrat.variable} ${arimo.variable}`}>
       <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow mx-auto">{children}</main>
         <Footer />
       </body>
     </html>
