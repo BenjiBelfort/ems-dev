@@ -123,37 +123,46 @@ export default function CollabCard({
             src={photo3}
             alt={`${prenom} illustration`}
             fill
-            className="object-cover rounded-lg opacity-15 pointer-events-none z-0"
+            className="object-cover rounded-lg opacity-16 pointer-events-none z-0"
             style={{ zIndex: 0 }}
             sizes="(max-width: 768px) 100vw, 33vw"
           />
-          {/* Overlay texte */}
-          <div className="relative z-10 flex flex-col items-center w-full">
-            <h3 className="text-2xl font-bold mb-2">{prenom}</h3>
-            {signature && <p className="italic mb-2 text-center">{signature}</p>}
-            <ul className="text-sm mb-4 w-full max-w-xs mx-auto">
-              {alias && <li><b>Alias :</b> {alias}</li>}
-              {dessert && <li><b>Dessert préféré :</b> {dessert}</li>}
-              {hero && <li><b>Héros :</b> {hero}</li>}
-              {vilain && <li><b>Vilain :</b> {vilain}</li>}
-              {karaoke && <li><b>Karaoké :</b> {karaoke}</li>}
-              {films && <li><b>Film préféré :</b> {films}</li>}
-              {serie && <li><b>Série :</b> {serie}</li>}
-              {boisson && <li><b>Boisson :</b> {boisson}</li>}
-              {friandise && <li><b>Friandise :</b> {friandise}</li>}
-              {peche && <li><b>Péché mignon :</b> {peche}</li>}
-              {animal && <li><b>Animal :</b> {animal}</li>}
-              {valeur && <li><b>Valeur :</b> {valeur}</li>}
-            </ul>
-            <p className="mb-2 font-semibold">niveau de jeu</p>
-            <div className="flex space-x-1">
-              {[...Array(maxStars)].map((_, i) =>
-                i < jeux ? (
-                  <FaStar key={i} className="text-yellow-300" />
-                ) : (
-                  <FaRegStar key={i} className="text-yellow-300" />
-                )
-              )}
+          {/* Overlay texte structuré en 3 blocs */}
+          <div className="relative z-10 flex flex-col justify-between items-center w-full h-full">
+            {/* Bloc 1 : Prénom + signature */}
+            <div className="flex flex-col items-center w-full min-h-20">
+              <h3 className="text-2xl font-bold mb-1">{prenom}</h3>
+              {signature && <p className="italic text-center text-base leading-tight">{signature}</p>}
+            </div>
+            {/* Bloc 2 : Infos */}
+            <div className="flex-1 w-full flex flex-col items-center justify-start mt-1">
+              <ul className="text-base mb-2 w-full max-w-xs mx-auto leading-relaxed">
+                {alias && <li><b>Alias :</b> {alias}</li>}
+                {dessert && <li><b>Dessert préféré :</b> {dessert}</li>}
+                {hero && <li><b>Super-héros :</b> {hero}</li>}
+                {vilain && <li><b>Super-vilain :</b> {vilain}</li>}
+                {karaoke && <li><b>Chanson de karaoké :</b> {karaoke}</li>}
+                {films && <li><b>Film préféré :</b> {films}</li>}
+                {serie && <li><b>Série culte :</b> {serie}</li>}
+                {boisson && <li><b>Boisson préférée :</b> {boisson}</li>}
+                {friandise && <li><b>Friandise préférée :</b> {friandise}</li>}
+                {peche && <li><b>Péché mignon :</b> {peche}</li>}
+                {animal && <li><b>Animal mythique :</b> {animal}</li>}
+                {valeur && <li><b>Valeur :</b> {valeur}</li>}
+              </ul>
+            </div>
+            {/* Bloc 3 : Niveau de jeu */}
+            <div className="flex flex-col items-center w-full min-h-16 justify-end">
+              <p className="font-semibold">Niveau de jeu</p>
+              <div className="flex space-x-1">
+                {[...Array(maxStars)].map((_, i) =>
+                  i < jeux ? (
+                    <FaStar key={i} className="text-yellow-300" />
+                  ) : (
+                    <FaRegStar key={i} className="text-yellow-300" />
+                  )
+                )}
+              </div>
             </div>
           </div>
         </div>
