@@ -5,22 +5,51 @@ import { useState, useEffect } from "react";
 import { FaStar, FaRegStar, FaArrowRight } from "react-icons/fa";
 
 type CollabCardProps = {
-  name: string;
+  prenom: string;
   photo1: string;
   photo2: string;
-  portraitText: string;
-  jeux: number; // nombre d'étoiles pleines (0 à 5)
+  photo3: string;
+  signature: string;
+  alias: string;
+  dessert: string;
+  hero: string;
+  vilain: string;
+  karaoke: string;
+  films: string;
+  serie: string;
+  boisson: string;
+  friandise: string;
+  peche: string;
+  animal: string;
+  valeur: string;
+  jeux: number;
+  isFlipped: boolean;
+  onClick: () => void;
 };
 
 export default function CollabCard({
-  name,
+  prenom,
   photo1,
   photo2,
-  portraitText,
+  photo3,
+  signature,
+  alias,
+  dessert,
+  hero,
+  vilain,
+  karaoke,
+  films,
+  serie,
+  boisson,
+  friandise,
+  peche,
+  animal,
+  valeur,
   jeux,
+  isFlipped,
+  onClick,
 }: CollabCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const maxStars = 5;
@@ -35,10 +64,18 @@ export default function CollabCard({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Pour appliquer l'ombre (hover ou flip)
+  const applyShadow = isHovered || isFlipped;
+
   return (
     <div
-      className="w-64 md:w-auto h-120 cursor-pointer perspective"
-      onClick={() => setIsFlipped(!isFlipped)}
+      className="w-full aspect-[3/4] cursor-pointer perspective"
+      onClick={onClick}
+      // On ne gère les événements hover que sur desktop
+      {...(!isMobile && {
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false),
+      })}
     >
       <div
         className={`relative w-full h-full duration-500 transition-transform transform-style-preserve-3d ${
@@ -47,13 +84,13 @@ export default function CollabCard({
       >
         {/* FRONT */}
         <div
-          className="absolute w-full h-full backface-hidden rounded-lg shadow-lg overflow-hidden"
-          onMouseEnter={() => !isMobile && setIsHovered(true)}
-          onMouseLeave={() => !isMobile && setIsHovered(false)}
+          className={`absolute w-full h-full backface-hidden rounded-lg overflow-hidden
+            transition-shadow duration-300 ease-in-out
+            ${applyShadow ? "shadow-[0px_4px_4px_0px_rgba(0,0,0,0.5)]" : "shadow-lg"}`}
         >
           <Image
             src={isMobile ? photo1 : isHovered ? photo2 : photo1}
-            alt={name}
+            alt={prenom}
             fill
             className="object-cover transition-opacity duration-300"
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -61,11 +98,7 @@ export default function CollabCard({
           {/* Texte "En savoir plus" */}
           <div
             className={`absolute bottom-0 left-0 w-full bg-gradient-to-t from-lime-400/80 to-transparent p-2 transition-transform duration-300 ${
-              isMobile
-                ? "translate-y-0"
-                : isHovered
-                ? "translate-y-0"
-                : "translate-y-full"
+              isMobile || isHovered ? "translate-y-0" : "translate-y-full"
             }`}
           >
             <p className="text-white text-center text-lg font-medium drop-shadow-md flex items-center justify-center gap-2 group cursor-pointer">
@@ -80,18 +113,48 @@ export default function CollabCard({
         </div>
 
         {/* BACK */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-lg p-6 text-white flex flex-col justify-center items-center">
-          <h3 className="text-2xl font-bold mb-2">{name}</h3>
-          <p className="mb-4 text-center italic">{portraitText}</p>
-          <p className="mb-2 font-semibold">niveau de jeu</p>
-          <div className="flex space-x-1">
-            {[...Array(maxStars)].map((_, i) =>
-              i < jeux ? (
-                <FaStar key={i} className="text-yellow-300" />
-              ) : (
-                <FaRegStar key={i} className="text-yellow-300" />
-              )
-            )}
+        <div
+          className={`absolute w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-lg p-6 text-white flex flex-col justify-center items-center
+            transition-shadow duration-300 ease-in-out
+            ${applyShadow ? "shadow-[0px_4px_4px_0px_rgba(0,0,0,0.5)]" : "shadow-lg"}`}
+        >
+          {/* Image de fond en transparence */}
+          <Image
+            src={photo3}
+            alt={`${prenom} illustration`}
+            fill
+            className="object-cover rounded-lg opacity-15 pointer-events-none z-0"
+            style={{ zIndex: 0 }}
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          {/* Overlay texte */}
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <h3 className="text-2xl font-bold mb-2">{prenom}</h3>
+            {signature && <p className="italic mb-2 text-center">{signature}</p>}
+            <ul className="text-sm mb-4 w-full max-w-xs mx-auto">
+              {alias && <li><b>Alias :</b> {alias}</li>}
+              {dessert && <li><b>Dessert préféré :</b> {dessert}</li>}
+              {hero && <li><b>Héros :</b> {hero}</li>}
+              {vilain && <li><b>Vilain :</b> {vilain}</li>}
+              {karaoke && <li><b>Karaoké :</b> {karaoke}</li>}
+              {films && <li><b>Film préféré :</b> {films}</li>}
+              {serie && <li><b>Série :</b> {serie}</li>}
+              {boisson && <li><b>Boisson :</b> {boisson}</li>}
+              {friandise && <li><b>Friandise :</b> {friandise}</li>}
+              {peche && <li><b>Péché mignon :</b> {peche}</li>}
+              {animal && <li><b>Animal :</b> {animal}</li>}
+              {valeur && <li><b>Valeur :</b> {valeur}</li>}
+            </ul>
+            <p className="mb-2 font-semibold">niveau de jeu</p>
+            <div className="flex space-x-1">
+              {[...Array(maxStars)].map((_, i) =>
+                i < jeux ? (
+                  <FaStar key={i} className="text-yellow-300" />
+                ) : (
+                  <FaRegStar key={i} className="text-yellow-300" />
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>

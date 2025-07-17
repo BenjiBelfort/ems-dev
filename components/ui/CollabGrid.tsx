@@ -15,22 +15,40 @@ function shuffleArray<T>(array: T[]): T[] {
 
 export default function CollabGrid() {
   const [shuffledTeam, setShuffledTeam] = useState(teamMembers);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setShuffledTeam(shuffleArray(teamMembers));
   }, []);
 
   return (
-    <div className="container mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {shuffledTeam.map(({ Prenom, Portrait, jeux }) => (
+    <div className="">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 justify-items-center">
+        {shuffledTeam.map((collab, index) => (
           <CollabCard
-            key={Prenom}
-            name={Prenom}
-            portraitText={Portrait}
-            jeux={jeux ?? 0} // fallback à 0 si absent
-            photo1={`/images/equipe/galerie/${Prenom}_1.webp`}
-            photo2={`/images/equipe/galerie/${Prenom}_2.webp`}
+            key={collab.Id}
+            prenom={collab.Prenom}
+            signature={collab.Signature}
+            alias={collab.Alias}
+            dessert={collab.Dessert}
+            hero={collab.Hero}
+            vilain={collab.Vilain}
+            karaoke={collab.Karaoke}
+            films={collab.Films}
+            serie={collab.Serie}
+            boisson={collab.Boisson}
+            friandise={collab.Friandise}
+            peche={collab.Peche}
+            animal={collab.Animal}
+            valeur={collab.Valeur}
+            jeux={collab.jeux ?? 0}
+            photo1={`/images/equipe/galerie/${collab.Id}_1.webp`}
+            photo2={`/images/equipe/galerie/${collab.Id}_2.webp`}
+            photo3={`/images/equipe/galerie/${collab.Id}_3.webp`}
+            isFlipped={flippedIndex === index}
+            onClick={() =>
+              setFlippedIndex((prev) => (prev === index ? null : index))
+            }
           />
         ))}
       </div>

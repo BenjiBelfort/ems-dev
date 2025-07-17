@@ -40,9 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${quicksand.variable} ${montserrat.variable} ${arimo.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col mx-auto">
         <Navbar />
-        <main className="flex-grow mx-auto">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
