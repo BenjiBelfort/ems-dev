@@ -114,7 +114,7 @@ export default function CollabCard({
 
         {/* BACK */}
         <div
-          className={`absolute w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-lg p-6 text-white flex flex-col justify-center items-center
+          className={`absolute w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-lg p-4 sm:p-6 text-white flex flex-col justify-center items-center
             transition-shadow duration-300 ease-in-out
             ${applyShadow ? "shadow-[0px_4px_4px_0px_rgba(0,0,0,0.5)]" : "shadow-lg"}`}
         >
@@ -130,13 +130,13 @@ export default function CollabCard({
           {/* Overlay texte structuré en 3 blocs */}
           <div className="relative z-10 flex flex-col justify-between items-center w-full h-full">
             {/* Bloc 1 : Prénom + signature */}
-            <div className="flex flex-col items-center w-full min-h-20">
-              <h3 className="text-2xl font-bold mb-1">{prenom}</h3>
-              {signature && <p className="italic text-center text-base leading-tight">{signature}</p>}
+            <div className="flex flex-col items-center w-full min-h-16">
+              <h3 className="text-xl sm:text-2xl font-bold mb-1">{prenom}</h3>
+              {signature && <p className="italic text-center text-sm sm:text-base leading-tight">{signature}</p>}
             </div>
             {/* Bloc 2 : Infos */}
             <div className="flex-1 w-full flex flex-col items-center justify-start mt-1">
-              <ul className="text-base mb-2 w-full max-w-xs mx-auto leading-relaxed">
+              <ul className="text-sm sm:text-base w-full max-w-xs mx-auto leading-relaxed">
                 {alias && <li><b>Alias :</b> {alias}</li>}
                 {dessert && <li><b>Dessert préféré :</b> {dessert}</li>}
                 {hero && <li><b>Super-héros :</b> {hero}</li>}

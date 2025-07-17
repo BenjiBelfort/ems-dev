@@ -23,7 +23,7 @@ export default function CollabGrid() {
 
   return (
     <div className="">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 justify-items-center">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 justify-items-center">
         {shuffledTeam.map((collab, index) => (
           <CollabCard
             key={collab.Id}
