@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -57,11 +58,20 @@ export default function Navbar() {
         <Link
           href="/"
           onClick={handleScrollToTop}
-          className="flex flex-col leading-tight text-white no-underline group"
+          className="flex flex-row items-center leading-tight text-white no-underline group"
         >
+            {/* Logo desktop uniquement */}
+        <Image
+          src="/images/logo.webp" // adapte le chemin à ton logo
+          alt="Logo EMS Audit"
+          width={52} // adapte la taille à ton design
+          height={52}
+          className="mr-6 hidden lg:block"
+          priority
+        />
           <span>
-            <h1 className="text-2xl font-bold group-hover:underline">EMS Audit</h1>
-            <h2 className="text-sm font-light tracking-wide">expertise & conseil</h2>
+            <h1 className="text-center text-4xl font-medium scale-x-115">EMS <span className="text-lime-400">A</span>udit</h1>
+            <h2 className="tracking-[.13em]">expertise & conseil</h2>
           </span>
         </Link>
 
