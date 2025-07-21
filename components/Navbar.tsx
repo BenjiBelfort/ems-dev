@@ -52,7 +52,11 @@ export default function Navbar() {
   const navBgClass = isHome && !scrolled ? "bg-transparent" : "bg-black/90 shadow-md";
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-colors duration-500 ${navBgClass}`}>
+    <header
+      className={`fixed top-0 w-full z-50 transition-colors duration-500 ${
+        isOpen ? 'bg-transparent shadow-none' : navBgClass
+      }`}
+    >
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center text-white">
         <div className="relative flex flex-row items-center z-50">
           <Link
@@ -109,7 +113,7 @@ export default function Navbar() {
 
         {/* Overlay */}
         <div
-          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-30 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-30 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           onClick={() => setIsOpen(false)}
         />
 
