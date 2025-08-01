@@ -1,3 +1,5 @@
+"use client";
+
 import Titre from "@/components/ui/Titres";
 
 import CollabGrid from "@/components/ui/CollabGrid";

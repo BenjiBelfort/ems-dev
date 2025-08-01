@@ -1,4 +1,5 @@
-// pages
+"use client";
+
 import Titre from "@/components/ui/Titres";
 
 export default function BilanCarbonePage() {
