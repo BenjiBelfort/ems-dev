@@ -1,6 +1,5 @@
 // app/page.tsx
 
-'use client'
 
 // import EquipeSection from "@/sections/EquipeSection";
 import HeroSection from "@/components/sections/HeroSection";
