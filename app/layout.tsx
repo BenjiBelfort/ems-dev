@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Quicksand, Montserrat, Arimo } from "next/font/google";
 
+import ClientScrollBehaviors from "@/components/scroll/ClientScrollBehaviors";
 import NewNavBar from "@/components/NewNavBar";
 import Footer from "@/components/Footer";
-import ScrollBehaviors from "@/components/scroll/ScrollBehaviors";
+
 
 import "./globals.css";
 
@@ -29,6 +30,7 @@ const arimo = Arimo({
   display: "swap",
 });
 
+
 export const metadata: Metadata = {
   title: "EMS Audit",
   description: "Expertise comptable et bilan carbone",
@@ -42,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${quicksand.variable} ${montserrat.variable} ${arimo.variable}`}>
       <body className="min-h-screen flex flex-col mx-auto">
-        <ScrollBehaviors />
+        <ClientScrollBehaviors />
         <NewNavBar />
         <main>{children}</main>
         <Footer />
