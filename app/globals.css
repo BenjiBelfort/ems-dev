@@ -26,14 +26,58 @@ h2 {
   font-family: var(--font-title-secondary), sans-serif;
 }
 
+.logo-title {
+  font-family: var(--font-title-main), sans-serif;
+}
+
+.logo-subtitle {
+  font-family: var(--font-title-secondary), sans-serif;
+}
+
+.footer-logo {
+  font-family: var(--font-title-main), sans-serif;
+}
+
 /* Paragraphe : Arimo */
 p {
   font-family: var(--font-body), sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-  margin-bottom: 1rem;
 }
 
+/* Liens de navigation */
+.nav-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: #a3e635; /* lime-400 */
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+  left: 50%;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Effet des cards */
 .perspective {
   perspective: 1000px;
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Quicksand, Montserrat, Arimo } from "next/font/google";
 
-import Navbar from "@/components/Navbar";
+import NewNavBar from "@/components/NewNavBar";
 import Footer from "@/components/Footer";
+import ScrollBehaviors from "@/components/scroll/ScrollBehaviors";
 
 import "./globals.css";
 
@@ -41,7 +42,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${quicksand.variable} ${montserrat.variable} ${arimo.variable}`}>
       <body className="min-h-screen flex flex-col mx-auto">
-        <Navbar />
+        <ScrollBehaviors />
+        <NewNavBar />
         <main>{children}</main>
         <Footer />
       </body>

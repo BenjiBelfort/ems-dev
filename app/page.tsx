@@ -1,24 +1,26 @@
 // app/page.tsx
 
 'use client'
-import dynamic from 'next/dynamic';
 
-import MainImg from "@/sections/MainImg";
-import AboutSection from "@/sections/AboutSection";
-import MissionsSection from "@/sections/MissionsSection";
 // import EquipeSection from "@/sections/EquipeSection";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutUsSection from "@/components/sections/AboutUsSection";
 
-// Import dynamique sans SSR (pas de rendu côté serveur)
-const ScrollHandler = dynamic(() => import("@/components/ScrollHandler"), { ssr: false });
+import SectionMissions from "@/components/sections/SectionMissions";
+
+import TeamCarousel from "@/components/sections/TeamCarousel";
+
 
 export default function Home() {
   return (
     <>
-      <ScrollHandler />
-      <MainImg />
-      <AboutSection />
-      <MissionsSection />
-      {/* <EquipeSection /> */}
+
+      <HeroSection />
+      <AboutUsSection />
+      <TeamCarousel />
+
+      <SectionMissions />
+
     </>
   );
 }

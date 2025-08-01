@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import AnimatedLink from "./ui/AnimatedLink";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -49,7 +50,9 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
-  const navBgClass = isHome && !scrolled ? "bg-transparent" : "bg-black/90 shadow-md";
+  
+
+  const navBgClass = isHome && !scrolled ? "bg-black/90 shadow-md" : "bg-black/90 shadow-md";
 
   return (
     <header
@@ -79,7 +82,7 @@ export default function Navbar() {
               </span>
             <span>
               <h1 className="text-center text-4xl font-medium scale-x-115">EMS <span className="text-lime-400">A</span>udit</h1>
-              <h2 className="text-center tracking-[.13em]">expertise & conseil</h2>
+              <h2 className="logo-title text-center tracking-[.16em]">expertise & conseil</h2>
             </span>
           </Link>
         </div>
@@ -87,16 +90,24 @@ export default function Navbar() {
         {/* Menu desktop */}
         <ul className="hidden lg:flex space-x-8 font-medium">
           <li>
-            <Link href="/" onClick={handleScrollToTop}>Accueil</Link>
+            <AnimatedLink to="/" onClick={handleScrollToTop}>
+              Accueil
+            </AnimatedLink>
           </li>
           <li>
-            <Link href="/?scrollTo=missions" onClick={handleScrollToMissions}>Missions</Link>
+            <AnimatedLink to="/?scrollTo=missions" onClick={handleScrollToMissions}>
+              Missions
+            </AnimatedLink>
           </li>
           <li>
-            <Link href="/equipe" onClick={() => setIsOpen(false)}>Équipe</Link>
+            <AnimatedLink to="/equipe" onClick={() => setIsOpen(false)}>
+              Équipe
+            </AnimatedLink>
           </li>
           <li>
-            <Link href="/missions/bilan-carbone" onClick={() => setIsOpen(false)}>Bilan Carbone ®</Link>
+            <AnimatedLink to="/missions/bilan-carbone" onClick={() => setIsOpen(false)}>
+              Bilan Carbone ®
+            </AnimatedLink>
           </li>
         </ul>
 
@@ -141,3 +152,4 @@ export default function Navbar() {
     </header>
   );
 }
+
