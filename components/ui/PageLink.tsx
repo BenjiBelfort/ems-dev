@@ -1,13 +1,14 @@
 // components/ui/PageLink.tsx
 "use client";
 
+import { MouseEventHandler } from "react";
 import Link from "next/link";
 
 interface PageLinkProps {
   to: string;
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default function PageLink({
@@ -16,10 +17,9 @@ export default function PageLink({
   children,
   onClick,
 }: PageLinkProps) {
-  const handleClick = () => {
-    // scroll instant sans utiliser 'any' ni comportement non standard
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = e => {
     window.scrollTo(0, 0);
-    onClick?.();
+    onClick?.(e);
   };
 
   return (

@@ -1,7 +1,9 @@
+import Titre from "@/components/ui/Titres";
+
 export default function ImmobilierPage() {
   return (
     <main className="p-8">
-      <h1>Immobilier</h1>
+      <Titre>Patrimoine</Titre>
       <p className="mb-6">
         Nous nous engageons à générer un impact positif sur la société à travers...
       </p>

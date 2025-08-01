@@ -1,7 +1,10 @@
+import Titre from "@/components/ui/Titres";
+
 export default function EntrepriseDifficultePage() {
   return (
     <main className="p-8">
-      <h1>Entreprise en difficulté</h1>
+      <Titre>Entreprise en difficulté</Titre>
+      
       <p className="mb-6">
         Nous nous engageons à générer un impact positif sur la société à travers...
       </p>

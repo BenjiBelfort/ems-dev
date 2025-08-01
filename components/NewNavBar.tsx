@@ -8,7 +8,7 @@ import AnimatedLink from "./ui/AnimatedLink";
 import EmsLogo from "./EmsLogo";
 
 type NavItem = {
-  id: "about" | "missions" | "equipe" | "immobilier";
+  id: "about" | "missions" | "equipe" | "patrimoine";
   label: string;
   href: string;    // section (ex: "about") ou page ("/equipe")
 };
@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: "about",      label: "À propos de Nous", href: "about"    },
   { id: "missions",   label: "Missions",         href: "missions" },
   { id: "equipe",     label: "Équipe",           href: "/equipe"  },
-  { id: "immobilier", label: "Immobilier",       href: "/immobilier" },
+  { id: "patrimoine", label: "Patrimoine",       href: "/missions/patrimoine" },
 ];
 
 export default function NewNavBar() {

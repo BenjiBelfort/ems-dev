@@ -1,7 +1,12 @@
+// pages
+import Titre from "@/components/ui/Titres";
+
 export default function BilanCarbonePage() {
   return (
     <main className="p-8">
-      <h1>Bilan Carbone ®</h1>
+      {/* Titre de niveau 1, avec id et scroll-margin-top automatiques */}
+      <Titre>Bilan Carbone ®</Titre>
+
       <p className="mb-6">
         Nous nous engageons à générer un impact positif sur la société à travers...
       </p>

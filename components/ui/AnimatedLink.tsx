@@ -9,7 +9,7 @@ export interface AnimatedLinkProps {
   offset?: number;
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;           // <-- bien un () => void
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default function AnimatedLink({

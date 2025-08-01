@@ -25,7 +25,7 @@ export default function SectionMissions() {
             href="/missions/expertise-comptable"
           />
           <Card
-            title="Bilan Carbone"
+            title="Bilan Carbone ®"
             description="Accompagnement des entreprises vers une démarche durable."
             href="/missions/bilan-carbone"
           />
@@ -37,7 +37,7 @@ export default function SectionMissions() {
           <Card
             title="Patrimoine"
             description="Accompagnement des entreprises dans la valorisation de leur patrimoine."
-            href="/missions/immobilier"
+            href="/missions/patrimoine"
           />
         </div>
       </div>

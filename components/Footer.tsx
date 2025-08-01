@@ -28,7 +28,7 @@ export default function Footer() {
     { label: "Expertise comptable", href: "/missions/expertise-comptable" },
     { label: "Bilan Carbone ®", href: "/missions/bilan-carbone" },
     { label: "Entreprise en difficulté", href: "/missions/entreprise-en-difficulte" },
-    { label: "Patrimoine", href: "/missions/immobilier" },
+    { label: "Patrimoine", href: "/missions/patrimoine" },
     { label: "Équipe", href: "/equipe" },
   ];
 

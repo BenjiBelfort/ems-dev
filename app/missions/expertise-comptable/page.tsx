@@ -1,7 +1,9 @@
+import Titre from "@/components/ui/Titres";
+
 export default function ExpertiseComptablePage() {
   return (
     <main className="p-8">
-      <h1>Expertise Comptable</h1>
+      <Titre>Expertise Comptable</Titre>
       <p className="mb-6">
         Nous nous engageons à générer un impact positif sur la société à travers...
       </p>

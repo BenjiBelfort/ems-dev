@@ -1,7 +1,7 @@
 // components/ui/AnchorLink.tsx
 "use client";
 
-import { MouseEvent } from "react";
+import { MouseEventHandler } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -10,7 +10,7 @@ interface AnchorLinkProps {
   offset?: number;            // décalage en px (hauteur de la navbar)
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default function AnchorLink({
@@ -23,7 +23,7 @@ export default function AnchorLink({
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleClick = (e: MouseEvent) => {
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
     // 1) Si on n'est pas sur la home, on y va avec ?scrollTo=
     if (pathname !== "/") {
@@ -38,7 +38,7 @@ export default function AnchorLink({
         window.history.replaceState({}, "", `#${to}`);
       }
     }
-    onClick?.();
+    onClick?.(e);
   };
 
   // href pour avoir le curseur "pointer" et le comportement Next.js  
