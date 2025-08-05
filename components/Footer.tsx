@@ -35,8 +35,9 @@ export default function Footer() {
 
   const infoItems = [
     { label: "Conditions d’utilisation", href: "/conditions-dutilisation" },
-    { label: "Politique de confidentialité", href: "/politique-confidentialite" },
+    { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
     { label: "Paramètres des cookies", href: "/parametres-cookies" },
+    { label: "Mentions légales", href: "/mentions-legales" },
   ];
 
   const socialLinks = {
@@ -74,7 +75,7 @@ export default function Footer() {
   const handleCopy = () => {
     navigator.clipboard.writeText(email).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 2500);
     });
   };
 
@@ -103,35 +104,46 @@ export default function Footer() {
               <button
                 onClick={handleCopy}
                 className="
-                  relative
-                  inline-flex
-                  w-full sm:w-auto
-                  mt-2
-                  border border-gray-600
-                  px-6 py-1
-                  rounded-full
+                  relative inline-flex w-full sm:w-auto
+                  mt-2 border border-gray-600
+                  px-6 py-1 rounded-full
                   hover:border-gray-500
                   transition
                 "
               >
-                {/* 1) Cette span invisible « réserve » la largeur du bouton */}
+                {/* Placeholder pour garder la taille */}
                 <span className="invisible inline-flex items-center">
-                  {email}
-                  <FaRegCopy />
+                  {email} <FaRegCopy />
                 </span>
 
-                {/* 2) Contenu absolu centré */}
-                {copied ? (
-                  <span className="absolute inset-0 flex items-center justify-center text-lime-400">
-                    <span>Email copié</span>
-                    <FaCheck className="ml-1" />
-                  </span>
-                ) : (
-                  <span className="absolute inset-0 flex items-center justify-center">
-                    <span className="mr-2">{email}</span>
-                    <FaRegCopy />
-                  </span>
-                )}
+                {/* Texte “Email copié ✔️” */}
+                <span
+                  className={`
+                    absolute inset-0 flex items-center justify-center
+                    transform transition-all duration-200
+                    ${copied
+                      ? "scale-100 opacity-100"
+                      : "scale-75 opacity-0 pointer-events-none"}
+                    text-lime-400
+                  `}
+                >
+                  <span>Email copié</span>
+                  <FaCheck className="ml-1" />
+                </span>
+
+                {/* Texte normal (email + icône) */}
+                <span
+                  className={`
+                    absolute inset-0 flex items-center justify-center
+                    transform transition-all duration-200
+                    ${copied
+                      ? "scale-75 opacity-0 pointer-events-none"
+                      : "scale-100 opacity-100"}
+                  `}
+                >
+                  <span className="mr-2">{email}</span>
+                  <FaRegCopy />
+                </span>
               </button>
 
             <div className="mt-6 space-y-6 text-sm sm:text-base">

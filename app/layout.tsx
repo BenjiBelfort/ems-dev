@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import { Quicksand, Montserrat, Arimo } from "next/font/google";
 
