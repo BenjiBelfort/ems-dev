@@ -13,6 +13,7 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaClock,
+  FaCheck
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -92,7 +93,7 @@ export default function Footer() {
 
             <Link
               href="/contact"
-              className="group inline-flex items-center mt-4 bg-white text-gray-900 px-5 py-2 rounded-full font-medium transition hover:bg-gray-200"
+              className="w-full sm:w-auto group inline-flex items-center mt-4 bg-white text-gray-900 px-5 py-2 rounded-full font-medium transition hover:bg-gray-200"
             >
               Planifiez un rendez-vous
               <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -122,7 +123,8 @@ export default function Footer() {
                 {/* 2) Contenu absolu centré */}
                 {copied ? (
                   <span className="absolute inset-0 flex items-center justify-center text-lime-400">
-                    Email copié !
+                    <span>Email copié</span>
+                    <FaCheck className="ml-1" />
                   </span>
                 ) : (
                   <span className="absolute inset-0 flex items-center justify-center">
